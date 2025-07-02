@@ -1,3 +1,4 @@
+const API_URL = 'https://script.google.com/macros/s/AKfycbyVDjdqMgiBaDjEWh8tiBOG1nd4awOCHNZNYRAsF3gPCpsTvXGRg5_lDBFuLNrq1VWZ/exec';
 const form = document.getElementById('expense-form');
 const status = document.getElementById('status');
 
@@ -6,15 +7,16 @@ form.addEventListener('submit', async function (e) {
   const data = Object.fromEntries(new FormData(form).entries());
 
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbz6CjzQLw82g9XDw8vYzsBjScAvKXPqGKsF5lb8V0rrrC7NazrodN1mraBPiKJfocAK/exec', {
+    const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: JSON.stringify(data)
+      body: new URLSearchParams(data).toString()
     });
 
     const result = await response.json();
+
     if (result.result === 'Success') {
       status.innerText = '✅ Expense registered successfully!';
       form.reset();
@@ -26,3 +28,12 @@ form.addEventListener('submit', async function (e) {
     status.innerText = '❌ Error submitting the form.';
   }
 });
+// Optional: Add a reset button to clear the form
+const resetButton = document.createElement('button');
+resetButton.innerText = 'Reset';
+resetButton.type = 'button';
+resetButton.addEventListener('click', function () {
+  form.reset();
+  status.innerText = '';
+});
+document.querySelector('.container').appendChild(resetButton);
