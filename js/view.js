@@ -111,22 +111,23 @@ async function loadExpenses() {
         </tr>
       `).join('');
 
-     const tableHtml = `
-        <div class="table-container">
-          <h3 class="table-title">Gastos</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Categoría</th>
-                <th>Subcategoría</th>
-                <th>Monto</th>
-              </tr>
-            </thead>
-            <tbody>${html}</tbody>
-          </table>
-        </div>
-      `;
+        const tableHtml = `
+          <div class="table-wrapper">
+            <h4 class="table-title">Gastos</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Categoría</th>
+                  <th>Subcategoría</th>
+                  <th>Monto</th>
+                </tr>
+              </thead>
+              <tbody>${html}</tbody>
+            </table>
+          </div>
+        `;
+
 
       tableContainer.innerHTML = tableHtml;
 

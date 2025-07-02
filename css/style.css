@@ -251,25 +251,57 @@ tr:nth-child(even) td {
 
 /* --- RESPONSIVE --- */
 @media screen and (max-width: 768px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+
   .totals-grid-layout {
     grid-template-columns: 1fr;
+  }
+
+  table {
+    font-size: 0.9rem;
   }
 }
 
 @media screen and (max-width: 480px) {
   .container {
-    width: 95%;
-    padding: 1.5rem;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   input,
   select,
-  button {
-    font-size: 0.95rem;
+  button,
+  a.btn-main,
+  a.btn-secondary {
+    font-size: 0.9rem;
+    padding: 10px;
   }
 
-  svg {
-    width: 18px;
-    height: 18px;
+  .totals-grid-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .table-container,
+  .table-zone,
+  .monthly-total {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: unset;
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .totals-table th,
+  .totals-table td {
+    padding: 6px;
   }
 }
