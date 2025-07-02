@@ -69,6 +69,14 @@ async function loadExpenses() {
           <tbody>${html}</tbody>
         </table>
       `;
+
+      // Ajustar el ancho del contenedor de acuerdo a la cantidad de registros
+      const container = document.querySelector('.container');
+      const baseWidth = 400; // ancho inicial en px
+      const maxWidth = 800;  // límite de crecimiento en px
+      const calculated = Math.min(baseWidth + data.length * 20, maxWidth);
+      container.style.maxWidth = `${calculated}px`;
+      container.style.width = '95%';
     }
   } catch (error) {
     tableContainer.innerHTML = '❌ Error al obtener datos.';
