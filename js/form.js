@@ -1,4 +1,4 @@
-const API_URL = 'https://script.google.com/macros/s/AKfycbwNQBsym9kN9nYpsnzbbsuXWG5dDmOxvuEWRW2ykRPqiaDpiAw532gj-rmaR0-yl71A/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbzg_V1u_Rf8wtRSATBAXFl66zlcDUSnW-nUq68YiFZ9RVraz--AFnz0-tUl0PpY4ut3/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('expense-form');
