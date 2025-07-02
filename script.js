@@ -6,12 +6,12 @@ form.addEventListener('submit', async function (e) {
   const data = Object.fromEntries(new FormData(form).entries());
 
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbyfzgp2CfLJFIVNe9EY0qN_lR6raF0ieONUJoAkcbvDjXki2OHlBRnQDKSBUALcehq72/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbz6CjzQLw82g9XDw8vYzsBjScAvKXPqGKsF5lb8V0rrrC7NazrodN1mraBPiKJfocAK/exec', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: JSON.stringify(data),
+      body: new URLSearchParams(data).toString()
     });
 
     const result = await response.json();
