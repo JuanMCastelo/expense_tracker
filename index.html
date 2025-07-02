@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expense Form</title>
+</head>
+<body>
+  <h2>Register Expense</h2>
+  <form id="expense-form">
+    <label>Fecha: <input type="date" name="fecha" required></label><br><br>
+    <label>Categoria: <input type="text" name="categoria" required></label><br><br>
+    <label>Subcategoria: <input type="text" name="subcategoria" required></label><br><br>
+    <label>Monto: <input type="number" step="0.01" name="monto" required></label><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('expense-form');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      const response = await fetch('https://https://script.google.com/macros/s/AKfycbxNtgdqlYqqMSnyii1Zxka-rh8CFTOvUNjfH0IwHHR4FUquji_kCjRP8QlVwRg6ITMl/exec', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        alert("Expense registered successfully!");
+        form.reset();
+      } else {
+        alert("Error submitting the form.");
+      }
+    });
+  </script>
+</body>
+</html>
