@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Expense Tracker</title>
 </head>
 <body>
@@ -22,19 +22,13 @@
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
+      const formData = new FormData(form);
 
       try {
-        const response = await fetch(
-          'https://script.google.com/macros/s/AKfycbyfzg9zCfLJFVNe9EYOqn_IR6raF0ieONuJOAokbvDjxXio2HIBrnQMXBsUALcehq72/exec',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-          }
-        );
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyf2g9zCfLJFlVNe9vOYQn_lR6raF0ieONUJoAokbvDjXix2OH1BRnQKDSUALcehq72/exec', {
+          method: 'POST',
+          body: new URLSearchParams(formData) // 👈 importante para compatibilidad con Apps Script
+        });
 
         const result = await response.json();
         if (result.result === 'Success') {
@@ -43,8 +37,8 @@
         } else {
           status.innerText = '⚠️ Unexpected response.';
         }
-      } catch (error) {
-        console.error('❌ Error:', error);
+      } catch (err) {
+        console.error('❌ Error:', err);
         status.innerText = '❌ Error submitting the form.';
       }
     });
