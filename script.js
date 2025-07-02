@@ -9,9 +9,9 @@ form.addEventListener('submit', async function (e) {
     const response = await fetch('https://script.google.com/macros/s/AKfycbz6CjzQLw82g9XDw8vYzsBjScAvKXPqGKsF5lb8V0rrrC7NazrodN1mraBPiKJfocAK/exec', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       },
-      body: new URLSearchParams(data).toString()
+      body: JSON.stringify(data)
     });
 
     const result = await response.json();
