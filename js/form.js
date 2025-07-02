@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dateInput = document.getElementById('date');
   const categorySelect = document.getElementById('category');
   const subcategorySelect = document.getElementById('subcategory');
+  const amountInput = document.getElementById('amount');
   const resetBtn = document.getElementById('reset-btn');
 
   if (!form) return;
@@ -73,12 +74,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
+
     const data = Object.fromEntries(new FormData(form).entries());
 
+    // Normalizar el monto (reemplazar coma por punto)
+    const rawAmount = data.amount.trim();
+    const normalizedAmount = rawAmount.replace(',', '.');
+    const parsedAmount = parseFloat(normalizedAmount);
+
+    if (isNaN(parsedAmount)) {
+      status.innerText = '❌ El monto ingresado no es válido.';
+      return;
+    }
+
+    data.amount = parsedAmount;
+
+    // Validar que la fecha no sea pasada
     const selectedDate = new Date(data.date);
     const now = new Date();
     now.setHours(0, 0, 0, 0);
-
     if (selectedDate < now) {
       status.innerText = '⚠️ La fecha no puede estar en el pasado.';
       return;

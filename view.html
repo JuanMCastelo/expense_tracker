@@ -8,7 +8,10 @@
 </head>
 <body>
   <div class="container">
+    <!-- Título principal -->
     <h2 id="view-title">Consultar Gastos</h2>
+
+    <!-- Filtros -->
     <div class="filters" id="filters">
       <label for="month">📅 Mes</label>
       <input type="month" id="month" />
@@ -26,17 +29,46 @@
         <option value="regalos">Regalos</option>
       </select>
 
+      <!-- Botón Filtrar -->
       <div class="form-buttons">
-        <button type="button" onclick="loadExpenses()" class="btn-main" id="filter-btn">🔍 Filtrar</button>
+        <button type="button" onclick="loadExpenses()" class="btn-main" id="filter-btn">
+          🔍 Filtrar
+        </button>
       </div>
     </div>
 
+    <!-- Tabla de gastos -->
     <div id="expenses-table-container" class="table-container"></div>
 
+    <!-- Sección de Totales -->
+    <div id="totals-section" style="display: none;">
+      <div class="totals-grid-layout">
+        <!-- Totales por categoría -->
+        <div class="table-zone">
+          <h4>Totales por Categoría</h4>
+          <div id="category-total-container"></div>
+        </div>
+
+        <!-- Totales por subcategoría -->
+        <div class="table-zone">
+          <h4>Totales por Subcategoría</h4>
+          <div id="subcategory-total-container"></div>
+        </div>
+      </div>
+
+      <!-- Total mensual -->
+      <div class="monthly-total">
+        <h4>Total mensual</h4>
+        <div id="monthly-total-container"></div>
+      </div>
+    </div>
+
+    <!-- Botón volver -->
     <div class="form-buttons">
       <a href="index.html" class="btn-secondary" id="back-button">Volver</a>
     </div>
   </div>
+
   <script src="js/view.js"></script>
 </body>
 </html>

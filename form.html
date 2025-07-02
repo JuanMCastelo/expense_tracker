@@ -32,7 +32,8 @@
       </select>
 
       <label for="amount">💰 Monto</label>
-      <input type="number" name="amount" id="amount" step="0.01" required />
+      <input type="text" name="amount" id="amount" pattern="^\d+(,\d{1,3})?$" inputmode="decimal" required />
+
 
       <div class="form-buttons">
         <button type="submit" class="btn-main">Guardar</button>
