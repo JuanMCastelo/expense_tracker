@@ -8,6 +8,24 @@ document.addEventListener('DOMContentLoaded', () => {
   monthInput.setAttribute('max', maxMonth);
 });
 
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  if (isNaN(date)) return dateStr;
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}/${month}/${day}`;
+}
+
+function formatAmount(amount) {
+  const num = parseFloat(amount);
+  if (isNaN(num)) return amount;
+  return num.toLocaleString('de-DE', {
+    minimumFractionDigits: 3,
+    maximumFractionDigits: 3
+  });
+}
+
 async function loadExpenses() {
   const tableContainer = document.getElementById('expenses-table-container');
   const monthInput = document.getElementById('month').value;
@@ -31,10 +49,10 @@ async function loadExpenses() {
     } else {
       const html = data.map(row => `
         <tr>
-          <td>${row[0]}</td>
+          <td>${formatDate(row[0])}</td>
           <td>${row[1]}</td>
           <td>${row[2]}</td>
-          <td>${row[3]}</td>
+          <td>${formatAmount(row[3])}</td>
         </tr>
       `).join('');
 
