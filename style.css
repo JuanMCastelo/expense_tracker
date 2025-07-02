@@ -6,7 +6,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 1rem;
 }
 
 .container {
@@ -14,7 +13,7 @@ body {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: 90%;
   max-width: 400px;
   box-sizing: border-box;
 }
@@ -23,7 +22,6 @@ h2 {
   text-align: center;
   color: #00c281;
   margin-bottom: 1.5rem;
-  font-size: 1.5rem;
 }
 
 label {
@@ -31,9 +29,9 @@ label {
   margin-top: 1rem;
   font-weight: 500;
   color: #333;
-  font-size: 0.95rem;
 }
 
+/* Inputs y selects uniformes */
 input,
 select {
   width: 100%;
@@ -45,6 +43,21 @@ select {
   font-size: 1rem;
   box-sizing: border-box;
   transition: border-color 0.3s ease;
+  appearance: none;
+}
+
+/* Corrección para input tipo fecha */
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #e7f0ff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #333;
 }
 
 input:focus,
@@ -54,20 +67,17 @@ select:focus {
 }
 
 select {
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2300c281' d='M7 7l3 3 3-3z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpath fill='%2300c281' d='M7 7l3 3 3-3z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px 16px;
-  background-color: #e7f0ff;
 }
 
+/* Botones */
 button {
   margin-top: 1.5rem;
   width: 100%;
-  background-color: #00c281;
-  color: white;
-  padding: 14px;
+  padding: 12px;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
@@ -75,8 +85,24 @@ button {
   transition: background 0.3s ease;
 }
 
-button:hover {
+/* Submit */
+button[type="submit"] {
+  background-color: #00c281;
+  color: white;
+}
+
+button[type="submit"]:hover {
   background-color: #00a26d;
+}
+
+/* Reset */
+button[type="button"] {
+  background-color: #f56c57;
+  color: white;
+}
+
+button[type="button"]:hover {
+  background-color: #d94e3f;
 }
 
 #status {
@@ -84,52 +110,21 @@ button:hover {
   font-weight: 600;
   color: #d90429;
   text-align: center;
-  font-size: 0.95rem;
-  word-wrap: break-word;
 }
 
-/* ✅ Responsive ajustes extra para móviles muy pequeños */
-@media screen and (max-width: 360px) {
+/* Responsive (por si lo necesitás extra) */
+@media (max-width: 480px) {
   .container {
-    padding: 1.2rem;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  label {
-    font-size: 0.9rem;
-  }
-
-  button {
-    font-size: 0.95rem;
-    padding: 12px;
-  }
-}
-@media screen and (max-width: 480px) {
-  body {
-    padding: 0.5rem;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 350px;
     padding: 1.5rem;
   }
 
-  h2 {
-    font-size: 1.3rem;
-  }
-
   input,
-  select {
-    font-size: 0.95rem;
-    padding: 10px;
-  }
-
+  select,
   button {
     font-size: 0.95rem;
-    padding: 12px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
   }
 }
