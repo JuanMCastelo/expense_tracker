@@ -8,7 +8,7 @@ const subcategorySelect = document.getElementById('subcategory');
 
 // Set today's date as minimum
 const today = new Date().toISOString().split('T')[0];
-dateInput.setAttribute('min', today);
+dateInput.setAttribute('min', today - 1);
 
 // Mapeo de subcategorías por categoría
 const subcategoriesByCategory = {
