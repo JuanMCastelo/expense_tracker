@@ -30,7 +30,8 @@ label {
   color: #333;
 }
 
-input {
+input,
+select {
   width: 100%;
   padding: 10px;
   margin-top: 4px;
@@ -38,6 +39,22 @@ input {
   border: 1px solid #ccc;
   background-color: #e7f0ff;
   font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #00c281;
+  outline: none;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2300c281' d='M7 7l3 3 3-3z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
 }
 
 button {
