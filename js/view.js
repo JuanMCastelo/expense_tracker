@@ -28,33 +28,36 @@ async function loadExpenses() {
 
     if (data.length === 0) {
       tableContainer.innerHTML = 'No hay datos para mostrar.';
-      return;
+    } else {
+      const html = data.map(row => `
+        <tr>
+          <td>${row[0]}</td>
+          <td>${row[1]}</td>
+          <td>${row[2]}</td>
+          <td>${row[3]}</td>
+        </tr>
+      `).join('');
+
+      tableContainer.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Categoría</th>
+              <th>Subcategoría</th>
+              <th>Monto</th>
+            </tr>
+          </thead>
+          <tbody>${html}</tbody>
+        </table>
+      `;
     }
-
-    const html = data.map(row => `
-      <tr>
-        <td>${row[0]}</td>
-        <td>${row[1]}</td>
-        <td>${row[2]}</td>
-        <td>${row[3]}</td>
-      </tr>
-    `).join('');
-
-    tableContainer.innerHTML = `
-      <table>
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Categoría</th>
-            <th>Subcategoría</th>
-            <th>Monto</th>
-          </tr>
-        </thead>
-        <tbody>${html}</tbody>
-      </table>
-    `;
   } catch (error) {
     tableContainer.innerHTML = '❌ Error al obtener datos.';
     console.error(error);
   }
+
+  // Ocultar filtros y título cuando aparezca la tabla o el mensaje
+  document.getElementById('view-title').style.display = 'none';
+  document.getElementById('filters').style.display = 'none';
 }

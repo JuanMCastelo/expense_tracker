@@ -8,8 +8,8 @@
 </head>
 <body>
   <div class="container">
-    <h2>Consultar Gastos</h2>
-    <div class="filters">
+    <h2 id="view-title">Consultar Gastos</h2>
+    <div class="filters" id="filters">
       <label for="month">📅 Mes</label>
       <input type="month" id="month" />
 
@@ -27,12 +27,15 @@
       </select>
 
       <div class="form-buttons">
-        <button type="button" onclick="loadExpenses()" class="btn-main">🔍 Filtrar</button>
-        <a href="index.html" class="btn-secondary">Volver</a>
+        <button type="button" onclick="loadExpenses()" class="btn-main" id="filter-btn">🔍 Filtrar</button>
       </div>
     </div>
 
     <div id="expenses-table-container"></div>
+
+    <div class="form-buttons">
+      <a href="index.html" class="btn-secondary" id="back-button">Volver</a>
+    </div>
   </div>
   <script src="js/view.js"></script>
 </body>
