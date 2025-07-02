@@ -13,8 +13,18 @@
       <label for="date">📅 Date</label>
       <input type="date" name="date" id="date" required />
 
-      <label for="category">📁 Category</label>
-      <input type="text" name="category" id="category" required />
+     <label for="category">📁 Category</label>
+      <select name="category" id="category" required>
+        <option value="" disabled selected>Select category</option>
+        <option value="hogar">Hogar</option>
+        <option value="entretenimiento">Entretenimiento</option>
+        <option value="transporte">Transporte</option>
+        <option value="tarjetas de credito">Tarjetas de Crédito</option>
+        <option value="comida">Comida</option>
+        <option value="ahorros o inversiones">Ahorros o Inversiones</option>
+        <option value="cuidado personal">Cuidado Personal</option>
+        <option value="regalos">Regalos</option>
+      </select>
 
       <label for="subcategory">📂 Subcategory</label>
       <input type="text" name="subcategory" id="subcategory" required />

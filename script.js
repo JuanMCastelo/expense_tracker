@@ -1,6 +1,8 @@
 const API_URL = 'https://script.google.com/macros/s/AKfycbyVDjdqMgiBaDjEWh8tiBOG1nd4awOCHNZNYRAsF3gPCpsTvXGRg5_lDBFuLNrq1VWZ/exec';
 const form = document.getElementById('expense-form');
 const status = document.getElementById('status');
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('date').setAttribute('min', today);
 
 form.addEventListener('submit', async function (e) {
   e.preventDefault();
