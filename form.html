@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrar Gasto</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Registrar Gasto</h2>
+    <form id="expense-form">
+      <label for="date">📅 Fecha</label>
+      <input type="date" name="date" id="date" required />
+
+      <label for="category">📁 Categoría</label>
+      <select name="category" id="category" required>
+        <option value="" disabled selected>Seleccionar categoría</option>
+        <option value="hogar">Hogar</option>
+        <option value="entretenimiento">Entretenimiento</option>
+        <option value="transporte">Transporte</option>
+        <option value="tarjetas de credito">Tarjetas de Crédito</option>
+        <option value="comida">Comida</option>
+        <option value="ahorros o inversiones">Ahorros o Inversiones</option>
+        <option value="cuidado personal">Cuidado Personal</option>
+        <option value="regalos">Regalos</option>
+      </select>
+
+      <label for="subcategory">📂 Subcategoría</label>
+      <select name="subcategory" id="subcategory" disabled required>
+        <option value="" disabled selected>Seleccionar subcategoría</option>
+      </select>
+
+      <label for="amount">💰 Monto</label>
+      <input type="number" name="amount" id="amount" step="0.01" required />
+
+      <div class="form-buttons">
+        <button type="submit" class="btn-main">Guardar</button>
+        <button type="button" id="reset-button" class="btn-danger">Reset</button>
+        <a href="index.html" class="btn-secondary">Volver</a>
+      </div>
+    </form>
+    <p id="status"></p>
+  </div>
+  <script src="js/form.js"></script>
+</body>
+</html>
