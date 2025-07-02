@@ -30,6 +30,13 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
+.table-title,
+.monthly-total h4 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
 /* --- FORMULARIO Y ENTRADAS --- */
 label {
   display: block;
@@ -123,7 +130,7 @@ a.btn-danger {
 .form-buttons {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-top: 1.5rem;
 }
 
@@ -147,6 +154,10 @@ a.btn-danger {
   overflow-x: auto;
   margin-top: 1.5rem;
   width: 100%;
+}
+
+.table-wrapper {
+  margin-top: 1rem;
 }
 
 table {
@@ -204,7 +215,6 @@ tr:nth-child(even) td {
 }
 
 .monthly-total {
-  text-align: right;
   padding: 1rem;
   background: #fff;
   border-radius: 8px;
@@ -227,23 +237,6 @@ tr:nth-child(even) td {
   background-color: #00c281;
   color: white;
 }
-.table-title {
-  text-align: center;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-.monthly-total h4 {
-  text-align: center;
-}
-
-.welcome-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-
 
 /* --- ANIMACIONES --- */
 @keyframes fadeIn {
