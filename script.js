@@ -8,9 +8,66 @@ const subcategorySelect = document.getElementById('subcategory');
 
 // Set today's date as minimum
 const today = new Date().toISOString().split('T')[0];
-dateInput.setAttribute('min', today - 1);
+dateInput.setAttribute('min', today);
 
-// Mapeo de subcategorías por categoría
+// Función para comparar solo año, mes y día
+function isDateInPast(dateStr) {
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const inputDate = new Date(year, month - 1, day);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Eliminar hora
+  return inputDate < today;
+}
+
+// Validar y enviar el formulario
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  if (isDateInPast(data.date)) {
+    status.innerText = '⚠️ Date cannot be in the past.';
+    return;
+  }
+
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: new URLSearchParams(data).toString()
+    });
+
+    const result = await response.json();
+
+    if (result.result === 'Success') {
+      status.innerText = '✅ Expense registered successfully!';
+      form.reset();
+      subcategorySelect.innerHTML = '<option value="" disabled selected>Select subcategory</option>';
+      subcategorySelect.disabled = true;
+    } else {
+      status.innerText = '⚠️ Unexpected response.';
+    }
+  } catch (error) {
+    console.error('❌ Error:', error);
+    status.innerText = '❌ Error submitting the form.';
+  }
+});
+
+// Botón reset adicional
+const resetButton = document.createElement('button');
+resetButton.innerText = 'Reset';
+resetButton.type = 'button';
+resetButton.style.marginTop = '10px';
+resetButton.addEventListener('click', function () {
+  form.reset();
+  status.innerText = '';
+  subcategorySelect.innerHTML = '<option value="" disabled selected>Select subcategory</option>';
+  subcategorySelect.disabled = true;
+});
+document.querySelector('.container').appendChild(resetButton);
+
+// Subcategorías dinámicas con preseleccionadas
 const subcategoriesByCategory = {
   hogar: {
     items: ["alquiler", "telefono", "luz", "gas", "agua", "television", "ABL", "mantenimiento o reparaciones"],
@@ -46,12 +103,11 @@ const subcategoriesByCategory = {
   }
 };
 
-// Lógica para actualizar subcategorías al seleccionar categoría
+// Cambiar subcategorías al seleccionar categoría
 categorySelect.addEventListener("change", () => {
   const selectedCategory = categorySelect.value;
   const data = subcategoriesByCategory[selectedCategory];
 
-  // Limpiar subcategorías anteriores
   subcategorySelect.innerHTML = '<option value="" disabled selected>Select subcategory</option>';
 
   if (!data || data.items.length === 0) {
@@ -59,7 +115,6 @@ categorySelect.addEventListener("change", () => {
     return;
   }
 
-  // Agregar nuevas subcategorías
   data.items.forEach(sub => {
     const option = document.createElement("option");
     option.value = sub;
@@ -72,57 +127,3 @@ categorySelect.addEventListener("change", () => {
 
   subcategorySelect.disabled = false;
 });
-
-// Validar y enviar el formulario
-form.addEventListener('submit', async function (e) {
-  e.preventDefault();
-  const data = Object.fromEntries(new FormData(form).entries());
-
-  // Validar que la fecha no sea anterior a hoy
-  const selectedDate = new Date(data.date);
-  const now = new Date();
-  now.setHours(0, 0, 0, 0);
-  if (selectedDate < now) {
-    status.innerText = '⚠️ Date cannot be in the past.';
-    return;
-  }
-
-  try {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: new URLSearchParams(data).toString()
-    });
-
-    const result = await response.json();
-
-    if (result.result === 'Success') {
-      status.innerText = '✅ Expense registered successfully!';
-      form.reset();
-
-      // Resetear subcategoría
-      subcategorySelect.innerHTML = '<option value="" disabled selected>Select subcategory</option>';
-      subcategorySelect.disabled = true;
-    } else {
-      status.innerText = '⚠️ Unexpected response.';
-    }
-  } catch (error) {
-    console.error('❌ Error:', error);
-    status.innerText = '❌ Error submitting the form.';
-  }
-});
-
-// Botón reset adicional
-const resetButton = document.createElement('button');
-resetButton.innerText = 'Reset';
-resetButton.type = 'button';
-resetButton.style.marginTop = '10px';
-resetButton.addEventListener('click', function () {
-  form.reset();
-  status.innerText = '';
-  subcategorySelect.innerHTML = '<option value="" disabled selected>Select subcategory</option>';
-  subcategorySelect.disabled = true;
-});
-document.querySelector('.container').appendChild(resetButton);
